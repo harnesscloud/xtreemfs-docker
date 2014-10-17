@@ -1,0 +1,11 @@
+Dockerfiles to run the XtreemFS services in containers.
+
+Service configuration files are expected to be mapped into /xtreemfs_data. The
+config files have to be named dirconfig.properties, mrcconfig.properties,
+osdconfig.properties, and schedulerconfig.properties. A new service can be
+startet for instance by running
+
+docker run -t -d -v /ssd:/xtreemfs_data xtreemfs/xtreemfs-harness-osd:latest
+
+to run an XtreemFS OSD while the config is stored in /ssd/osdconfig.properties
+on the host.
