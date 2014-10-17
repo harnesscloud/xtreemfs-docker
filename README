@@ -8,4 +8,6 @@ startet for instance by running
 docker run -t -d -v /ssd:/xtreemfs_data xtreemfs/xtreemfs-harness-osd:latest
 
 to run an XtreemFS OSD while the config is stored in /ssd/osdconfig.properties
-on the host.
+on the host. Network ports have to be mapped adequately while executing "docker
+run". Required ports are 32636 for the MRC, 32638 for the DIR, 32640 for the
+OSD, 32642 for the reservation scheduler, and 8080 for the IRM-XtreemFS.
