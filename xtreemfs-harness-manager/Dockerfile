@@ -17,5 +17,13 @@ RUN git clone https://gitlab.harness-project.eu/chrkl/irm-xtreemfs.git && \
 	rm -rf /apache-tomcat-6.0.41/webapps/ROOT && \
 	cp target/ROOT.war /apache-tomcat-6.0.41/webapps/
 
-CMD [ "/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.dir.DIR","/xtreemfs_data/dirconfig.properties","&&","/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.mrc.MRC","/xtreemfs_data/mrcconfig.properties","&&","/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.scheduler.Scheduler","/xtreemfs_data/schedulerconfig.properties","&&","/apache-tomcat-6.0.41/bin/startup.sh" ]
+RUN echo "#!/bin/bash" > /run_xtreemfs.sh
+RUN echo "/usr/bin/java -ea -cp /xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/* org.xtreemfs.dir.DIR /xtreemfs_data/dirconfig.properties &" >> /run_xtreemfs.sh
+RUN echo "/usr/bin/java -ea -cp /xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/* org.xtreemfs.mrc.MRC /xtreemfs_data/mrcconfig.properties &" >> /run_xtreemfs.sh
+RUN echo "/usr/bin/java -ea -cp /xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/* org.xtreemfs.scheduler.Scheduler /xtreemfs_data/schedulerconfig.properties &" >> /run_xtreemfs.sh
+RUN echo "/apache-tomcat-6.0.41/bin/catalina.sh run" >> /run_xtreemfs.sh
+RUN chmod +x /run_xtreemfs.sh
 
+#CMD [ "/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.dir.DIR","/xtreemfs_data/dirconfig.properties","&&","/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.mrc.MRC","/xtreemfs_data/mrcconfig.properties","&&","/usr/bin/java","-ea","-cp","/xtreemfs/java/servers/dist/XtreemFS.jar:/xtreemfs/java/foundation/dist/Foundation.jar:/xtreemfs/java/flease/dist/Flease.jar:/xtreemfs/java/lib/*","org.xtreemfs.scheduler.Scheduler","/xtreemfs_data/schedulerconfig.properties","&&","/apache-tomcat-6.0.41/bin/startup.sh" ]
+
+CMD [ "/run_xtreemfs.sh" ]
