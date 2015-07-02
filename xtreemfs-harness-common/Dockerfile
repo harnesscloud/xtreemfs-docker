@@ -1,4 +1,4 @@
-FROM sequenceiq/pam:ubuntu-14.04
+FROM phusion/baseimage
 MAINTAINER Christoph Kleineweber <kleineweber@zib.de>
 
 RUN apt-get -qy update && apt-get -qy install git make openjdk-7-jdk ant
