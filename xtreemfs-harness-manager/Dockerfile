@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qy install maven wget
 
-RUN wget http://mirror.synyx.de/apache/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
+RUN wget http://www.eu.apache.org/dist/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
 RUN tar xvzf apache-tomcat-6.0.44.tar.gz
 RUN sed -i 's/8080/30080/g' apache-tomcat-6.0.44/conf/server.xml
 
