@@ -9,7 +9,7 @@ RUN wget http://mirror.synyx.de/apache/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat
 RUN tar xvzf apache-tomcat-6.0.44.tar.gz
 RUN sed -i 's/8080/30080/g' apache-tomcat-6.0.44/conf/server.xml
 
-RUN git clone https://gitlab.harness-project.eu/chrkl/irm-xtreemfs.git && \
+RUN git clone https://github.com/harnesscloud/irm-xtreemfs.git && \
 	cd irm-xtreemfs && \
 	cd lib && \
 	./add_to_local_maven_repo.sh && \
