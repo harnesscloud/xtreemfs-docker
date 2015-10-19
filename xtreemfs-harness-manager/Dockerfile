@@ -25,4 +25,4 @@ RUN echo "/usr/bin/java -ea -cp /xtreemfs/java/servers/dist/XtreemFS.jar:/xtreem
 RUN echo "/apache-tomcat-6.0.44/bin/catalina.sh run" >> /run_xtreemfs.sh
 RUN chmod +x /run_xtreemfs.sh
 
-CMD [ "/run_xtreemfs.sh" ]
+CMD [ "/run_xtreemfs.sh>/dev/null" ]
